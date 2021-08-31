@@ -1,0 +1,22 @@
+version: "3.4"
+services:
+  oracle-db:
+    container_name: oracle-db
+    image: oracle-db
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+        - 1521:1521
+    expose:
+        - 1521
+    volumes:
+        - oracle-data:/opt/oracle/oradata
+    environment:
+        - ORACLE_SID=ORABXPR
+        - ORACLE_PWD=BRUNOXPEIXOTO
+        - ORACLE_PDB=BRUNOXPEIXOTO
+    shm_size: 1g
+    restart: unless-stopped
+volumes:
+  oracle-data: 
